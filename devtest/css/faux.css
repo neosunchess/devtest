@@ -1,0 +1,21 @@
+.container {
+	width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+	}
+.sidebar-block {
+	width: 300px;
+	float: left;
+	position: relative;
+	margin-right: -300px;
+	}
+.content-block {
+	width: 680px;
+	background-color: blue;
+	float: left;
+	padding-bottom: 32111px;
+	margin-bottom: -32111px;
+	border-left: 300px solid red;
+
+	
+	}

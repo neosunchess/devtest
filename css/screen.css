@@ -1,0 +1,42 @@
+/* line 4, ../_ambar/sass/screen.scss */
+.readme-block {
+  width: 40em;
+  margin: 50px auto 50px auto;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* line 11, ../_ambar/sass/screen.scss */
+.highlight {
+  font-size: 12px;
+}
+
+/* line 15, ../_ambar/sass/screen.scss */
+h2 {
+  margin-top: 60px;
+  margin-bottom: 0;
+}
+
+/* line 20, ../_ambar/sass/screen.scss */
+h3, h2, .example-link {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: baseline;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+/* line 23, ../_ambar/sass/screen.scss */
+.example-link {
+  color: #000;
+  margin-left: 10px;
+  padding: 5px 15px;
+  background-color: #f6f1dd;
+  font-size: 14px;
+  margin-top: -5px;
+}
+/* line 30, ../_ambar/sass/screen.scss */
+.example-link:hover {
+  background-color: #faeaaa;
+}
