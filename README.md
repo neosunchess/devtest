@@ -1,4 +1,4 @@
-devtest
+Two column layouts examples
 =======
 
-Testing github pages and jekyll
+
