@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Readme</title>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+<link rel="stylesheet" href="css/screen.css" />
+<link rel="stylesheet" href="css/pygments.css">
+
+
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+<div class='readme-block'>
+
+	<h1>Readme</h1>
+	
+	Main problem witn two-columns layout - equal height columns. There are many workaround to do this, with fixed, fluid, source-ordered columns.
+
+	<div>
+		<h2>Faux columns and modifications</h2>
+		<p>Floated columns, negative margins, position relative for stacking order.</p>
+
+		<h3>Background image</h3>
+		<p>Most basic and old-school. Set image on background of container, and use it to make equal-height columns. Cons - http-request for image, maintain, fixed column.</p> 
+		<p>Although, we can use it for fluid-width two-column layout if we make image wide enougth and relatively position it in background.</p>
+
+
+<div class='highlight'><pre><code class='css'> 
+<span class='nc'>.container</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>980px</span><span class='p'>;</span>
+	<span class='k'>margin</span><span class='o'>:</span> <span class='m'>0</span> <span class='k'>auto</span><span class='p'>;</span>
+	<span class='k'>overflow</span><span class='o'>:</span> <span class='k'>hidden</span><span class='p'>;</span>
+	<span class='k'>background</span><span class='o'>:</span> <span class='sx'>url(img/columns-bg.png)</span> <span class='m'>30</span><span class='o'>%</span> <span class='m'>0</span> <span class='k'>repeat-y</span><span class='p'>;</span> <span class='c'>/* like this */</span>
+	<span class='p'>}</span>		
+</code></pre></div>
+
+		
+		
+		<h3>Huge padding/margins</h3>
+		<p>Same as columns with image, but with border as a faux column. Big pagging for equal height, and negative margin to shift content back on its place.</p>
+		<a href='faux-columns.html'>Example</a>
+
+
+<div class='highlight'><pre><code class='css'><span class='nc'>.container</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>980px</span><span class='p'>;</span>
+	<span class='k'>margin</span><span class='o'>:</span> <span class='m'>0</span> <span class='k'>auto</span><span class='p'>;</span>
+	<span class='k'>overflow</span><span class='o'>:</span> <span class='k'>hidden</span><span class='p'>;</span> <span class='c'>/* we need this to clip huge paddings (and clear floats) */</span>
+	<span class='p'>}</span>
+<span class='nc'>.sidebar-block</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>300px</span><span class='p'>;</span> <span class='c'>/* only pixels in this case, because border size can&#39;t be anything else */</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span> <span class='c'>/* we need this to bring column to top (positioned elements are higher in stack) */</span>
+	<span class='k'>margin-right</span><span class='o'>:</span> <span class='m'>-300px</span><span class='p'>;</span> 
+	<span class='p'>}</span>
+<span class='nc'>.content-block</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>680px</span><span class='p'>;</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>blue</span><span class='p'>;</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='k'>padding-bottom</span><span class='o'>:</span> <span class='m'>32111px</span><span class='p'>;</span> <span class='c'>/* we set this to make column height */</span>
+	<span class='k'>margin-bottom</span><span class='o'>:</span> <span class='m'>-32111px</span><span class='p'>;</span> <span class='c'>/* and shift back content */</span>
+	<span class='k'>border-left</span><span class='o'>:</span> <span class='m'>300px</span> <span class='k'>solid</span> <span class='nb'>red</span><span class='p'>;</span> <span class='c'>/* this is other column background */</span>
+	<span class='p'>}</span>		
+</code></pre></div>
+
+
+
+		<h3>CSS3 Gragients</h3>
+		<p>For modern browsers faux columns can be setted with gradient and apropriate color stops.</p>
+	</div>
+
+
+
+	<div>
+		<h2>Pseudo elements</h2>
+		<p>Column backgrounds are made with empty 100%-height pseudo-elments, absolute positioned under apropriate columns.</p>
+		<a href='pseudo-elements.html'>Example</a>
+
+
+<div class='highlight'><pre><code class='css'><span class='nc'>.container</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>980px</span><span class='p'>;</span>
+	<span class='k'>margin</span><span class='o'>:</span> <span class='m'>0</span> <span class='k'>auto</span><span class='p'>;</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+	<span class='k'>z-index</span><span class='o'>:</span> <span class='m'>1</span><span class='p'>;</span>
+	<span class='k'>overflow</span><span class='o'>:</span> <span class='k'>hidden</span><span class='p'>;</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#555</span><span class='p'>;</span>
+	<span class='p'>}</span>
+<span class='nc'>.sidebar-block</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>30</span><span class='o'>%</span><span class='p'>;</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='p'>}</span>
+<span class='nc'>.content-block</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>70</span><span class='o'>%</span><span class='p'>;</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='p'>}</span>
+
+<span class='c'>/* And here is our columns backgrounds */</span>
+<span class='nc'>.container</span><span class='nd'>:before</span><span class='o'>,</span> <span class='nc'>.container</span><span class='nd'>:after</span> <span class='p'>{</span>
+	<span class='k'>content</span><span class='o'>:</span> <span class='s2'>&quot; &quot;</span><span class='p'>;</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>absolute</span><span class='p'>;</span> <span class='c'>/* get them out of the document flow */</span>
+	<span class='k'>z-index</span><span class='o'>:</span> <span class='m'>-1</span><span class='p'>;</span> <span class='c'>/* position them in stack below anything else */</span>
+	<span class='k'>top</span><span class='o'>:</span> <span class='m'>0</span><span class='p'>;</span>
+	<span class='k'>height</span><span class='o'>:</span> <span class='m'>100</span><span class='o'>%</span><span class='p'>;</span>
+	<span class='p'>}</span>
+<span class='nc'>.container</span><span class='nd'>:before</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>30</span><span class='o'>%</span><span class='p'>;</span> <span class='c'>/* same as column width */</span>
+	<span class='k'>background</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;</span>
+	<span class='p'>}</span>
+<span class='nc'>.container</span><span class='nd'>:after</span> <span class='p'>{</span>
+	<span class='k'>left</span><span class='o'>:</span> <span class='m'>30</span><span class='o'>%</span><span class='p'>;</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>70</span><span class='o'>%</span><span class='p'>;</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>blue</span><span class='p'>;</span>
+	<span class='p'>}</span>
+</code></pre></div>
+
+	</div>
+
+
+	<div>
+		<h2>Table cells</h2>
+		<p>We can imitate good old table with css `table-cell` property. But without source-ordering abilities in this case.</p>
+	</div>
+
+
+	<div>
+		<h2>MJT</h2>
+		<p>Matthew James Taylor method. Floated container have height as its floated children. With aditional divs we shift columns to make columns backgrounds, and shift content back into place.</p>
+		<a href='mjt.html'>Example</a>
+
+
+<div class='highlight'><pre><code class='css'>  
+<span class='nc'>.container-outer</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>980px</span><span class='p'>;</span>
+	<span class='k'>margin</span><span class='o'>:</span> <span class='m'>0</span> <span class='k'>auto</span><span class='p'>;</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;</span> <span class='c'>/* content-block background */</span>
+	<span class='k'>overflow</span><span class='o'>:</span> <span class='k'>hidden</span><span class='p'>;</span>
+	<span class='p'>}</span>
+<span class='nc'>.container-inner</span> <span class='p'>{</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#555</span><span class='p'>;</span> <span class='c'>/* sidebar background */</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+	<span class='k'>right</span><span class='o'>:</span> <span class='m'>75</span><span class='o'>%</span><span class='p'>;</span> <span class='c'>/* we shift this to reveal content background */</span>
+	<span class='p'>}</span>
+<span class='nc'>.sidebar-block</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>25</span><span class='o'>%</span><span class='p'>;</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+	<span class='k'>left</span><span class='o'>:</span><span class='m'>75</span><span class='o'>%</span> <span class='c'>/* we shift this to bring content back */</span>
+	<span class='p'>}</span>
+<span class='nc'>.content-block</span> <span class='p'>{</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>680px</span><span class='p'>;</span>
+	<span class='k'>float</span><span class='o'>:</span> <span class='k'>left</span><span class='p'>;</span>
+	<span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+	<span class='k'>left</span><span class='o'>:</span><span class='m'>75</span><span class='o'>%</span> <span class='c'>/* we shift this to bring content back */</span>
+	<span class='p'>}</span>
+</code></pre></div>
+
+	</div>
+
+
+	<div>
+		<h2>Flexboxes</h2>
+		<p>In brave new world we can use flexboxes.</p>
+		<a href='flexboxes.html'>Example</a>
+		
+
+<div class='highlight'><pre><code class='css'>  
+<span class='nc'>.container</span> <span class='p'>{</span>
+	<span class='k'>display</span><span class='o'>:</span> <span class='n'>flex</span><span class='p'>;</span> <span class='c'>/* set context to flexbox */</span>
+	<span class='c'>/* vendor prefixes for each browser */</span>
+<span class='p'>}</span>
+<span class='nc'>.sidebar-block</span> <span class='p'>{</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>red</span><span class='p'>;</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>30</span><span class='o'>%</span><span class='p'>;</span>
+<span class='p'>}</span>
+<span class='nc'>.content-block</span> <span class='p'>{</span>
+	<span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>blue</span><span class='p'>;</span>
+	<span class='k'>width</span><span class='o'>:</span> <span class='m'>70</span><span class='o'>%</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+	</div>
+
+
+	<div class='page-list-block'>
+		<ul class='readme-page-list'>
+				
+					
+					<li><a href='/faux-columns.html'>Faux columns</a></li>
+					
+				
+					
+					<li><a href='/flexboxes.html'>MJT</a></li>
+					
+				
+					
+				
+					
+					<li><a href='/mjt.html'>MJT</a></li>
+					
+				
+					
+					<li><a href='/pseudo.html'>Pseudo elements</a></li>
+					
+				
+		</ul>
+	</div>
+
+</div>
+
+
+
+<script src="js/jquery-1.9.1.min.js"></script>
+
+</body>
+</html>
